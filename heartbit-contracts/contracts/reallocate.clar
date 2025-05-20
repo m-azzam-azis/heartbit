@@ -30,6 +30,13 @@
   )
 )
 
+(define-read-only (is-initialized)
+  (and 
+    (> (var-get inactivityDuration) u0)
+    (> (var-get totalPercentage) u0)
+  )
+)
+
 ;; Update recipients
 (define-public (update-recipients (recipientList (list { recipient: principal, percentage: uint })))
   (begin
@@ -46,12 +53,13 @@
 )
 
 ;; Deposit funds into contract
-(define-public (deposit)
+(define-public (deposit (amount uint))
   (begin
     (asserts! (is-eq tx-sender (var-get owner)) ERR_NOT_OWNER)
-    (ok true)
+    (stx-transfer? amount tx-sender (as-contract tx-sender))
   )
 )
+
 
 ;; Send heartbeat to reset timer
 (define-public (heartbeat)
@@ -79,25 +87,38 @@
       (asserts! (> contract-balance u0) ERR_NO_FUNDS)
       
       (as-contract
-        (fold
-          (lambda (item prior-result)
-            (match prior-result
-              success (let (
-                  (amount (/ (* contract-balance (get percentage item)) u100))
-                  (recipient (get recipient item))
+        (let ((result 
+          (fold
+            (lambda (item prior-result)
+              (match prior-result
+                success (let (
+                    (amount (/ (* contract-balance (get percentage item)) u100))
+                    (recipient (get recipient item))
+                  )
+                  (stx-transfer? amount tx-sender recipient)
                 )
-                (stx-transfer? amount tx-sender recipient)
+                error prior-result
               )
-              error prior-result
             )
+            recipientList
+            (ok true)
+          )))
+          ;; Send remaining balance to last recipient
+          (match result
+            success (let ((remaining (stx-get-balance tx-sender)))
+              (if (> remaining u0)
+                (stx-transfer? remaining tx-sender (get recipient (element-at recipientList (- (length recipientList) u1))))
+                result
+              )
+            )
+            error result
           )
-          recipientList
-          (ok true)
         )
       )
     )
   )
 )
+
 
 ;; Get contract details
 (define-read-only (get-details)

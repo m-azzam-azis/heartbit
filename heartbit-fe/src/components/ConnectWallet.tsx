@@ -32,15 +32,7 @@ const ConnectWallet = () => {
   useEffect(() => setMounted(true), []);
 
   if (mounted && userSession.isUserSignedIn()) {
-    return (
-      <div className="flex flex-col items-center justify-center py-16">
-        <ConnectWalletButton />
-
-        {/* <p>mainnet: {userSession.loadUserData().profile.stxAddress.mainnet}</p>
-        <p>balance: {userSession.loadUserData().profile.stxAddress.balance}</p>
-        <p>testnet: {userSession.loadUserData().profile.stxAddress.testnet}</p> */}
-      </div>
-    );
+    return <></>;
   }
 
   return (

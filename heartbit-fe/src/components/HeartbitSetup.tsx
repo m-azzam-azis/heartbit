@@ -100,18 +100,18 @@ const HeartbitSetup = () => {
             min="1"
             value={inactivityDays}
             onChange={(e) => setInactivityDays(Number(e.target.value))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
           />
         </div>
 
         <div>
-          <div className="flex justify-between items-center mb-1">
+          <div className="flex justify-between items-center mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Recipients
             </label>
             <button
               onClick={addRecipient}
-              className="text-indigo-600 hover:text-indigo-800 text-sm font-medium flex items-center"
+              className="text-orange-600 hover:text-orange-800 text-sm font-medium flex items-center"
             >
               <PlusCircle className="h-4 w-4 mr-1" />
               Add Recipient
@@ -128,7 +128,7 @@ const HeartbitSetup = () => {
                   onChange={(e) =>
                     updateRecipient(index, "address", e.target.value)
                   }
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
                 <input
                   type="number"
@@ -138,7 +138,7 @@ const HeartbitSetup = () => {
                   onChange={(e) =>
                     updateRecipient(index, "percentage", Number(e.target.value))
                   }
-                  className="w-20 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-20 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                 />
                 <span>%</span>
                 <button
@@ -162,7 +162,7 @@ const HeartbitSetup = () => {
           disabled={!isValid || loading}
           className={`w-full py-3 px-4 rounded-md font-medium flex items-center justify-center ${
             isValid
-              ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+              ? "bg-orange-600 hover:bg-orange-700 text-white"
               : "bg-gray-200 text-gray-500 cursor-not-allowed"
           }`}
         >

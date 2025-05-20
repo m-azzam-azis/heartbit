@@ -88,8 +88,8 @@ const HeartbitDashboard = () => {
         <h2 className="text-xl font-semibold mb-4">Your Heartbit Status</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-indigo-50 p-4 rounded-lg">
-            <div className="flex items-center space-x-2 text-indigo-700">
+          <div className="bg-gray-50 ring-1 ring-orange-500 p-4 rounded-lg">
+            <div className="flex items-center space-x-2 ">
               <Clock className="h-5 w-5" />
               <span className="font-medium">Inactivity Period</span>
             </div>
@@ -98,8 +98,8 @@ const HeartbitDashboard = () => {
             </p>
           </div>
 
-          <div className="bg-indigo-50 p-4 rounded-lg">
-            <div className="flex items-center space-x-2 text-indigo-700">
+          <div className="bg-gray-50 ring-1 ring-orange-500 p-4 rounded-lg">
+            <div className="flex items-center space-x-2 ">
               <Users className="h-5 w-5" />
               <span className="font-medium">Recipients</span>
             </div>
@@ -108,8 +108,8 @@ const HeartbitDashboard = () => {
             </p>
           </div>
 
-          <div className="bg-indigo-50 p-4 rounded-lg">
-            <div className="flex items-center space-x-2 text-indigo-700">
+          <div className="bg-gray-50 ring-1 ring-orange-500 p-4 rounded-lg">
+            <div className="flex items-center space-x-2 ">
               <AlertCircle className="h-5 w-5" />
               <span className="font-medium">Blocks Remaining</span>
             </div>
@@ -134,7 +134,7 @@ const HeartbitDashboard = () => {
         <button
           onClick={sendHeartbeat}
           disabled={loading}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-md font-medium flex items-center justify-center"
+          className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 px-4 rounded-md font-medium flex items-center justify-center"
         >
           {loading ? (
             <RefreshCw className="h-5 w-5 animate-spin" />

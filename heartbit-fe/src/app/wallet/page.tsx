@@ -21,11 +21,11 @@ export default function Home() {
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-4xl mx-auto p-6">
           <ConnectWallet />
-          <nav className="flex border-b border-gray-200 mb-8">
+          <nav className="mt-20 flex border-b border-gray-200 mb-8">
             <button
               className={`py-2 px-4 font-medium ${
                 activeTab === "dashboard"
-                  ? "text-indigo-600 border-b-2 border-indigo-600"
+                  ? "text-orange-600 border-b-2 border-orange-600"
                   : "text-gray-500"
               }`}
               onClick={() => setActiveTab("dashboard")}
@@ -35,7 +35,7 @@ export default function Home() {
             <button
               className={`py-2 px-4 font-medium ${
                 activeTab === "setup"
-                  ? "text-indigo-600 border-b-2 border-indigo-600"
+                  ? "text-orange-600 border-b-2 border-orange-600"
                   : "text-gray-500"
               }`}
               onClick={() => setActiveTab("setup")}
@@ -45,7 +45,7 @@ export default function Home() {
             {/* <button
               className={`py-2 px-4 font-medium ${
                 activeTab === "recipients"
-                  ? "text-indigo-600 border-b-2 border-indigo-600"
+                  ? "text-orange-600 border-b-2 border-orange-600"
                   : "text-gray-500"
               }`}
               onClick={() => setActiveTab("recipients")}

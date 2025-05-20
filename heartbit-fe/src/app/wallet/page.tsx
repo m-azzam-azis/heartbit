@@ -7,7 +7,7 @@ import HeartbitSetup from "@/components/HeartbitSetup";
 import HeartbitDashboard from "@/components/HeartbitDashboard";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("setup");
 
   return (
     <Connect
@@ -24,16 +24,6 @@ export default function Home() {
           <nav className="mt-20 flex border-b border-gray-200 mb-8">
             <button
               className={`py-2 px-4 font-medium ${
-                activeTab === "dashboard"
-                  ? "text-orange-600 border-b-2 border-orange-600"
-                  : "text-gray-500"
-              }`}
-              onClick={() => setActiveTab("dashboard")}
-            >
-              Dashboard
-            </button>
-            <button
-              className={`py-2 px-4 font-medium ${
                 activeTab === "setup"
                   ? "text-orange-600 border-b-2 border-orange-600"
                   : "text-gray-500"
@@ -42,6 +32,17 @@ export default function Home() {
             >
               Setup
             </button>
+            <button
+              className={`py-2 px-4 font-medium ${
+                activeTab === "dashboard"
+                  ? "text-orange-600 border-b-2 border-orange-600"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("dashboard")}
+            >
+              Dashboard
+            </button>
+
             {/* <button
               className={`py-2 px-4 font-medium ${
                 activeTab === "recipients"

@@ -1,31 +1,64 @@
 "use client";
-import { useState, useEffect } from "react";
-import Head from "next/head";
-import {
-  ArrowRight,
-  Clock,
-  Users,
-  AlertCircle,
-  Trash2,
-  PlusCircle,
-  RefreshCw,
-} from "lucide-react";
-import Image from "next/image";
+import { useState } from "react";
 import { Connect } from "@stacks/connect-react";
+import ConnectWallet from "@/components/ConnectWallet";
 
-import ConnectWallet, { userSession } from "@/components/ConnectWallet";
-import ContractCallVote from "@/components/ContractCallVote";
+import HeartbitSetup from "@/components/HeartbitSetup";
+import HeartbitDashboard from "@/components/HeartbitDashboard";
 
-export default function Wallet() {
+export default function Home() {
+  const [activeTab, setActiveTab] = useState("dashboard");
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-24">
-      <div>
-        {/* ConnectWallet file: `./src/components/ConnectWallet.js` */}
-        <ConnectWallet />
+    <Connect
+      authOptions={{
+        appDetails: {
+          name: "Heartbit",
+          icon: "/logo.png",
+        },
+      }}
+    >
+      <main className="min-h-screen bg-gray-50">
+        <div className="max-w-4xl mx-auto p-6">
+          <ConnectWallet />
+          <nav className="flex border-b border-gray-200 mb-8">
+            <button
+              className={`py-2 px-4 font-medium ${
+                activeTab === "dashboard"
+                  ? "text-indigo-600 border-b-2 border-indigo-600"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("dashboard")}
+            >
+              Dashboard
+            </button>
+            <button
+              className={`py-2 px-4 font-medium ${
+                activeTab === "setup"
+                  ? "text-indigo-600 border-b-2 border-indigo-600"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("setup")}
+            >
+              Setup
+            </button>
+            {/* <button
+              className={`py-2 px-4 font-medium ${
+                activeTab === "recipients"
+                  ? "text-indigo-600 border-b-2 border-indigo-600"
+                  : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("recipients")}
+            >
+              Recipients
+            </button> */}
+          </nav>
 
-        {/* ContractCallVote file: `./src/components/ContractCallVote.js` */}
-        <ContractCallVote />
-      </div>
-    </main>
+          {activeTab === "dashboard" && <HeartbitDashboard />}
+          {activeTab === "setup" && <HeartbitSetup />}
+          {/* {activeTab === "recipients" && <HeartbitRecipients />} */}
+        </div>
+      </main>
+    </Connect>
   );
 }
